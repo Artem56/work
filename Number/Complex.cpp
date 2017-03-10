@@ -20,8 +20,7 @@ Complex ::Complex(double a, double b){
     im = b;
 }
 
-Complex::Complex(const Complex& a)
-{
+Complex::Complex(const Complex& a) {
     real = a.real;
     im = a.im;
 }
@@ -114,25 +113,30 @@ ostream& operator<<(ostream& out, const Complex& a) {
 }
 
 istream& operator>>(istream& is, Complex& a) {
-    double real;
-    double im;
-    cout<<"введите real\n";
+    char* endptr;
+
+    char real[20];
+    char im[20];
+
+    cout<<"введите действительную часть комплексного числа\n";
     is>>real;
-    cout<<"введите im\n";
+    double tmp1 = strtol(real, &endptr, 10);
+    if(*endptr != '\0'){
+        cout << "введен неверный символ: " << *endptr << endl;
+        exit(1);
+    }
+
+    cout<<"введите мнимую часть действительного числа\n";
     is>>im;
-    a.setReal(real);
-    a.setIm(im);
+    double tmp2 = strtol(im, &endptr, 10);
+    if(*endptr != '\0'){
+        cout << "введен неверный символ: " << *endptr << endl;
+        exit(1);
+    }
+
+    a.setReal(tmp1);
+    a.setIm(tmp2);
     return is;
 }
-/*
-int main() {
-    Complex a(1, 1);
 
-    Complex b(2, 2);
-    cin>>a;
-
-    cout << a;
-
-    return 0;
-}*/
 

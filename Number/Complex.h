@@ -17,8 +17,8 @@ private:
 
 public:
     Complex();
-    Complex(double);
-    Complex(double, double);
+    Complex(double a);
+    Complex(double a, double b);
     Complex(const Complex& other);
 
     double abs();
